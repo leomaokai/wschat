@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kai.wschat.mapper.MsgMapper">
+
+    <insert id="insertMsg" parameterType="com.kai.wschat.pojo.Msg">
+        insert into t_msg(`first`, `second`, `content`)
+        values (#{first}, #{second}, #{content})
+    </insert>
+    <select id="listMsg" resultType="com.kai.wschat.pojo.Msg">
+        select *
+        from t_msg
+        where `first` = #{first} and `second` = #{second}
+           or `first` = #{second} and `second` = #{first}
+    </select>
+</mapper>

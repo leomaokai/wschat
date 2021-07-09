@@ -1,0 +1,51 @@
+server:
+  port: 8700
+  session:
+    timeout: 72000
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username:
+    password:
+    url: jdbc:mysql://localhost:3306/ws_chat?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    hikari:
+      # 连接池名
+      pool-name: DateHikariCP
+      # 最小空闲连接数
+      minimum-idle: 5
+      # 空闲连接存活最大时间
+      idle-timeout: 100000
+      # 最大连接数
+      maximum-pool-size: 10
+      # 自动提交
+      auto-commit: true
+      # 连接最大存活时间(30m)
+      max-lifetime: 1800000
+      # 连接超时时间(30s)
+      connection-timeout: 30000
+      # 测试连接是否可用的查询语句
+      connection-test-query: SELECT 1
+  thymeleaf:
+    suffix: .html
+    prefix:
+      classpath: /templates/
+    cache: false
+  jackson: #返回的日期字段的格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false # true 使用时间戳显示时间
+  http:
+    multipart:
+      max-file-size: 1000Mb
+      max-request-size: 1000Mb
+#配置文件式开发
+mybatis:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  type-aliases-package: com.kai.kuangyun.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+
+kai:
+  resource: /ws_resource
+
